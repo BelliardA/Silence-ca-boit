@@ -1,0 +1,74 @@
+.contenu {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* Auto pour le header, 1fr pour le main, auto pour le footer */
+}
+
+.logo-menu { 
+  width: 200px;
+  margin: 0 auto;
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.content-players{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 70%;
+  max-height: 300px;
+  overflow-y:scroll;
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+.players{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  text-decoration: none;
+  border-radius: 30px;
+}
+
+.btn-del{
+  background-color: transparent ;
+  border: none;
+}
+
+.btn-img-del{
+  width: 40px;
+}
+
+.players{
+  width: 100%;
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+.jouer{
+  font-family: "IBM Plex Mono", monospace;
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  padding: 25px 100px;
+  border-radius: 40px;
+  font-size: 2rem;
+}

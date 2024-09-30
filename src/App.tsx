@@ -1,14 +1,18 @@
-import './App.css'
-import GamePlay from './components/GamePlay'
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import Home from './components/Home';
+import GamePlay from './components/GamePlay';
+import Level from './components/Level';
 
-function App() {
- 
-
+const App = () => {
   return (
-    <>
-      <GamePlay/>
-    </>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/level" element={<Level />} />
+        <Route path="/gameplay" element={<GamePlay />} />
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;

@@ -1,0 +1,10 @@
+:root {
+  --color-primary: #14192F;
+  --color-secondary: #FFFEEB;
+}
+
+body {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  font-family: "IBM Plex Mono", monospace;
+}

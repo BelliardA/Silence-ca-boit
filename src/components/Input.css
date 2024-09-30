@@ -1,0 +1,31 @@
+.form {
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+    border: 2px solid var(--color-secondary);
+    border-radius: 30px; 
+}
+
+.input {
+    width: 70%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--color-secondary);
+    font-size: 16px;
+    margin-right: 10px;
+    font-family: "IBM Plex Mono", monospace;
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+    color: var(--color-secondary);
+    cursor: pointer;
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+.add{
+    height: 50px;
+}
