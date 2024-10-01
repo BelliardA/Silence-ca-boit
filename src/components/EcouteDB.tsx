@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 
-function EcouteDB({ updateDecibel }: { updateDecibel: (decibels: number) => void }) {
-  const [maxDecibels, setMaxDecibels] = useState(0);
+function EcouteDB({ updateDecibel, updateMaxDecibel }: { updateDecibel: (decibels: number) => void; updateMaxDecibel: (maxDecibel: number) => void }) {
+  
+  let maxDecibel = 0;
 
   function ecoute(){
+
     navigator.mediaDevices.getUserMedia({ audio: true })
     .then((stream) => {
-      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const audioContext = new (window.AudioContext || window.AudioContext)();
       const source = audioContext.createMediaStreamSource(stream);
 
       const biquadFilter = audioContext.createBiquadFilter();
@@ -40,7 +42,10 @@ function EcouteDB({ updateDecibel }: { updateDecibel: (decibels: number) => void
         updateDecibel(decibels);
 
         // Mettre à jour le max des décibels dans le composant enfant
-        setMaxDecibels((prevMax) => (decibels > prevMax ? decibels : prevMax));
+        if (decibels > maxDecibel) {
+          maxDecibel = decibels; // Mettre à jour maxDecibel
+          updateMaxDecibel(maxDecibel); // Appeler la fonction pour mettre à jour le max
+        }
 
         requestAnimationFrame(calculateDecibels);
       }
@@ -55,12 +60,6 @@ function EcouteDB({ updateDecibel }: { updateDecibel: (decibels: number) => void
   useEffect(() => {
     ecoute();
   }, [updateDecibel]); // Ajout de setValue comme dépendance
-
-  return (
-    <div>
-      <p>Max Décibels : {maxDecibels}</p>
-    </div>
-  );
 }
 
 export default EcouteDB;

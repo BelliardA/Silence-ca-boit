@@ -1,0 +1,277 @@
+[
+    {
+      "id": 0,
+      "defi": "{player1} et {player2} faites une position d’acro sport",
+      "penalite": 2,
+      "type" : 1,
+      "zones": ["nonbruit"],
+      "isTimer": false
+    },
+    {
+      "id": 1,
+      "defi": "Applaudissez vos réussites, faites du bruit",
+      "penalite": 0,
+      "type" : 2,
+      "zones": ["soft", "ecoute"],
+      "isTimer": false
+    },
+    {
+      "id": 2,
+      "defi": "Duel de force, {player1} et {player2} faites un bras de fer",
+      "penalite": 1,
+      "type" : 1,
+      "zones": ["mort"],
+      "isTimer": false
+    },
+    {
+      "id": 3,
+      "defi": "{player1} Lèche ton coude",
+      "penalite": 1,
+      "type" : 1,
+      "zones": ["nonbruit", "mort"],
+      "isTimer": false
+    },
+    {
+      "id": 4,
+      "defi": "{player1} Fait un selfie avec {player2} en faisant une grimace",
+      "penalite": 0,
+      "type" : 1,
+      "zones": ["nonbruit", "mort"],
+      "isTimer": false
+    },
+    {
+      "id": 6,
+      "defi": "{player1} mime ton film / série du moment, les autres doivent le deviner en moins de 20 sec. Si personne ne trouve {player1} prend les pénalités. Si quelqu’un trouve {player2} prend les pénalités.",
+      "penalite": 2,
+      "type" : 1,
+      "zones": ["ecoute", "nonbruit"],
+      "isTimer": true,
+      "timer": 20
+    },
+    {
+      "id": 6,
+      "defi": "{player1} enlève une chaussure, fait la passer de main en main à tout le monde et remet-la, le tout en moins de 30 secondes. Si la mission est un échec, alors tout le monde prend les pénalités.",
+      "penalite": 2,
+      "type" : 1,
+      "zones": ["All"],
+      "isTimer": true,
+      "timer": 30
+    },
+    {
+      "id": 7,
+      "defi": "{player1} à partir de maintenant tu appelles {player2} mon chaton. Les autres, vous êtes arbitres, si {player1} ne respecte pas la règle, il prend une pénalité.",
+      "penalite": 1,
+      "type" : 1,
+      "zones": ["All"],
+      "isTimer": false
+    },
+    {
+      "id": 8,
+      "defi": "{player1} choisi un nombre entre 5 et 30, après choix, {player2} fait le nombre de pompes indiqué. Si {player2} ne veut pas ou n’y arrive pas, il prend les pénalités.",
+      "penalite": 2,
+      "type" : 1,
+      "zones": ["nonbruit", "mort"],
+      "isTimer": false
+    },
+    {
+      "id": 9,
+      "defi": "{player1} tourne autour de la table à cloche-pied",
+      "penalite": 0,
+      "type" : 1,
+      "zones": ["All"],
+      "isTimer": false
+    },
+    {
+      "id": 10,
+      "defi": "{player1}, prend une photo de toi sans utiliser tes mains ou celle de quelqu’un",
+      "penalite": 1,
+      "type" : 1,
+      "zones": ["nonbruit", "mort", "ecoute"],
+      "isTimer": false
+    },
+    {
+      "id": 11,
+      "defi": "{player1}, jusqu’à la prochaine zone tu dois finir tes phrases par un ricanement. Les autres vous êtes arbitres, si {player1} ne respecte pas la règle, il prend une pénalité.",
+      "penalite": 0,
+      "type" : 2,
+      "zones": ["ecoute", "nonbruit"],
+      "isTimer": false
+    },
+    {
+      "id": 12,
+      "defi": "{player1}, raconte-nous 3 anecdotes courtes, 2 fausses et une vraie. Si les autres joueurs trouvent la vraie, alors tu prends la pénalité. Sinon, ce sont les autres joueurs qui la prennent.",
+      "penalite": 2,
+      "type" : 1,
+      "zones": ["All"],
+      "isTimer": false
+    },
+    {
+      "id": 13,
+      "defi": "{player1}, choisis quelqu’un et propose-lui un cap ou pas cap. S’il n’accepte pas, il prend les pénalités.",
+      "penalite": 3,
+      "type" : 1,
+      "zones": ["mort"],
+      "isTimer": false
+    },
+    {
+      "id": 14,
+      "defi": "Gage de groupe, tous ceux qui {soustheme} prennent la pénalité.",
+      "penalite": 1,
+      "type" : 2,
+      "zones": ["soft", "ecoute"],
+      "isTimer": false,
+      "sous-theme": "sont en études, sont mineurs, ont moins de 50 EUR sur leur compte, ont un iPhone, ont plus de 4 heures d’écran par jour, portent un vêtement noir, sont assis à droite d’une fille, fument actuellement"
+    },
+    {
+      "id": 15,
+      "defi": "Désignez tous ensemble la personne la plus intelligente, celle-ci prend la pénalité.",
+      "penalite": 1,
+      "type" : 2,
+      "zones": ["ecoute", "nonbruit"],
+      "isTimer": false
+    },
+    {
+      "id": 16,
+      "defi": "A tour de rôle ajoutez quelque chose dans votre verre",
+      "penalite": 0,
+      "type" : 2,
+      "zones": ["mort"],
+      "isTimer": false
+    },
+    {
+      "id": 17,
+      "defi": "{player1} dit un mot, le premier qui chante une musique avec ce mot distribue les pénalités",
+      "penalite": 2,
+      "type" : 1,
+      "zones": ["soft", "ecoute", "nonbruit"],
+      "isTimer": false
+    },
+    {
+      "id": 18,
+      "defi": "{player1} fait nous 5 secondes de claquettes",
+      "penalite": 0,
+      "type" : 1,
+      "zones": ["soft"],
+      "isTimer": true,
+      "timer" : 5
+    },
+    {
+      "id": 19,
+      "defi": "Le premier qui enlève 2 vêtements distribue les pénalités",
+      "penalite": 3,
+      "type" : 1,
+      "zones": ["ecoute", "nonbruit"],
+      "isTimer": false
+    },
+    {
+      "id": 20,
+      "defi": "1 pénalité si tu es célibataire, 2 si tu es en couple, 3 si c’est compliqué",
+      "penalite": 0,
+      "type" : 2,
+      "zones": ["All"],
+      "isTimer": false
+    },
+    {
+      "id": 21,
+      "defi": "Les parents prennent autant de pénalités que d’enfants qu’ils ont",
+      "penalite": 0,
+      "type" : 2,
+      "zones": ["All"],
+      "isTimer": false
+    },
+    {
+      "id": 22,
+      "defi": "{player1} est le clapeur fou. Chaque fois qu’il claque des mains, tout le monde prend une pénalité… Même lui. Ceci jusqu’à la fin de la partie.",
+      "penalite": 0,
+      "type" : 2,
+      "zones": ["soft", "ecoute"],
+      "isTimer": false
+    },
+    {
+      "id": 23,
+      "defi": "{player1} est le/la seul(e) à pouvoir parler pendant le tour, sauf si une question demande à un autre joueur de parler. {player1} tu es l’arbitre, si un joueur ne respecte pas la règle, il prend une pénalité.",
+      "penalite": 0,
+      "type" : 2,
+      "zones": ["nonbruit", "mort"],
+      "isTimer": false
+    },
+    {
+      "id": 24,
+      "defi": "Êtes-vous de bons citoyens ? Ceux qui n’ont pas voté aux dernières élections distribuent les pénalités.",
+      "penalite": 4,
+      "type" : 2,
+      "zones": ["soft", "ecoute"],
+      "isTimer": false
+    },
+    {
+      "id": 25,
+      "defi": "{player1}, imite le bruit {soustheme}. Dans le cas d’un échec tu prends la pénalité, les autres vous jugez.",
+      "penalite": 1,
+      "type" : 1,
+      "zones": ["ecoute", "nonbruit"],
+      "isTimer": false,
+      "sous-theme": ["d’un camion, d’une oie"," d’une porte qui grince", "de ton voisin de droite", "de l’électricité"]
+    },
+    {
+      "id": 26,
+      "defi": "{player1} tu as 7 secondes pour trouver {soustheme}. Dans le cas d’un échec tu prends la pénalité.",
+      "penalite": 1,
+      "type" : 1,
+      "zones": ["mort"],
+      "isTimer": true,
+      "timer": 7,
+      "sous-theme": ["3 villes commençant par P", "3 films où il y a des chats dedans"]
+    },
+    {
+      "id": 27,
+      "defi": "Qui pourrait {soustheme} celui qui est voté à la majorité prend la pénalité.",
+      "penalite": 1,
+      "type" : 2,
+      "zones": ["All"],
+      "isTimer": false,
+      "sous-theme": ["mettre les mêmes sous-vêtements 3 jours"," être le plus radin"," donner tout son argent à des associations"]
+    },
+    {
+      "id": 28,
+      "defi": "J’ai déjà / Je n’ai jamais {soustheme}, la majorité distribue la pénalité.",
+      "penalite": 1,
+      "type" : 2,
+      "zones": ["nonbruit", "soft"],
+      "isTimer": false,
+      "sous-theme": ["voyager en dehors de l’Europe"," fait du foot en club"," mis du rouge à lèvres"]
+    },
+    {
+      "id": 29,
+      "defi": "Tirage Bonus, {player1} invente une nouvelle règle",
+      "penalite": 0,
+      "type" : 2,
+      "zones": ["All"],
+      "isTimer": false
+    },
+    {
+      "id": 30,
+      "defi": "{player1} choisis un thème, chacun dit un mot en rapport avec ce thème, si un joueur répète ou n’a pas d’idée il prend la pénalité",
+      "penalite": 2,
+      "type" : 2,
+      "zones": ["ecoute", "nonbruit", "mort"],
+      "isTimer": false
+    },
+    {
+      "id": 31,
+      "defi": "{player1} dit un mot, chaque joueur doit en dire un qui rime, si un joueur répète ou n’a plus d’idée il prend la pénalité",
+      "penalite": 2,
+      "type" : 2,
+      "zones": ["All"],
+      "isTimer": false
+    },
+    {
+      "id": 32,
+      "defi": "Quiz Culturelle : {question}, {4reponses}",
+      "penalite": 1,
+      "type" : 3,
+      "zones": ["soft", "nonbruit"],
+      "isTimer": false,
+      "questions" : [],
+      "reponses" : []
+    }
+  ]

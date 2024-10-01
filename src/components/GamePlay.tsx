@@ -1,17 +1,20 @@
 import EcouteDB from './EcouteDB'
 import Jauge from './Jauge'
+import Ecoute from './Ecoute'
 import { useState, useEffect} from 'react'
 
 function GamePlay(){
 
     const [decibel, setDecibel] = useState(0);
     const [countPlafond, setCountPlafond] = useState(0);
-    const [isCooldown, setIsCooldown] = useState(false); // Pour gérer le cooldown de 3 secondes
+    const [maxDecibels, setMaxDecibels] = useState(0);
+    const [isCooldown, setIsCooldown] = useState(false); 
+
+
   
-    useEffect(() => {
-      // Vérifier si les décibels dépassent 30 et que le cooldown n'est pas actif
+    useEffect(() => {   //timer de 3 seconds entre chaques dépassement du palafond
       if (decibel > 30 && !isCooldown) {
-        setCountPlafond(prevCount => prevCount + 1); // Incrémenter le compteur
+        setCountPlafond(prevCount => prevCount + 1);
   
         // Activer le cooldown pour éviter l'incrémentation pendant 3 secondes
         setIsCooldown(true);
@@ -23,13 +26,12 @@ function GamePlay(){
       }
     }, [decibel, isCooldown]);
 
+    //<EcouteDB updateDecibel={setDecibel} updateMaxDecibel={setMaxDecibels} />
+
 
     return (
         <div>
-            <h1>Silence ça boit</h1>
-            <EcouteDB updateDecibel={setDecibel} />
-            <Jauge decibels={decibel}/>
-            <p>Le nombre de fois que le plafond a été dépassé est de {countPlafond}</p>
+          <Ecoute/>
         </div>
     )
 }
