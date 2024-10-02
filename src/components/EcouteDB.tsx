@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 
-function EcouteDB({ updateDecibel, updateMaxDecibel }: { updateDecibel: (decibels: number) => void; updateMaxDecibel: (maxDecibel: number) => void }) {
+function EcouteDB({ updateDecibel, updateMaxDecibel }: { updateDecibel: (decibels: number) => void; updateMaxDecibel: (maxDecibel: number) => void; }) {
   
   let maxDecibel = 0;
 
