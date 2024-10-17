@@ -1,5 +1,3 @@
-import './Jauge.css';
-
 function Jauge({ decibels }: { decibels: number }) {
   // Limiter les décibels à un maximum de 50 pour la jauge
   const decibelPercentage = Math.min(Math.max((decibels / 50) * 100, 0), 100);

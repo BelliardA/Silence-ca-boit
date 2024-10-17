@@ -3,8 +3,11 @@ import EcouteDB from './EcouteDB';
 import AffichageFinZone from './AffichageFinZone';
 import questions from '../Json/questions.json';
 import { useState, useEffect} from 'react'
+import './Jauge.css';
 
 function GamePlay(){
+
+    const players = JSON.parse(localStorage.getItem("players") || "[]");
 
     const [decibel, setDecibel] = useState(0);
     const [countPlafond, setCountPlafond] = useState(0);
@@ -13,6 +16,9 @@ function GamePlay(){
     const [indexArrayZones, setIndexArrayZones] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [currentQuestion, setCurrentQuestion] = useState<any | null>(null);
+    const [player, setPlayer] = useState<string>(players[Math.floor(Math.random() * players.length)]);
+    const [player2, setPlayer2] = useState<string>(players[Math.floor(Math.random() * players.length)]);
+    const [audioAuthorized, setAudioAuthorized] = useState(false);
 
     let isJauge = false;
     
@@ -33,8 +39,6 @@ function GamePlay(){
       }
     }, [decibel, isCooldown]);
 
-    //<EcouteDB updateDecibel={setDecibel} updateMaxDecibel={setMaxDecibels} />
-
     useEffect(() => {   //Quand la zone change, réinitialiser l'index des questions
         setCurrentIndex(0);
     }, [indexArrayZones]);
@@ -54,7 +58,11 @@ function GamePlay(){
     // Récupération des questions du localStorage pour la zone actuelle
     const ids = JSON.parse(localStorage.getItem(zones[indexArrayZones] + "questions") || "[]");
 
+  
+    let maxDecibelsAtteint = 0;
+
     const handleClick = () => {             // gestion du click pour passer a la prochaine question
+      setPlayer(players[Math.floor(Math.random() * players.length)]);
         if (currentIndex < ids.length - 1) {
             setCurrentIndex(prevIndex => prevIndex + 1);
         } else {
@@ -67,7 +75,7 @@ function GamePlay(){
                   setMaxDecibels(0);
                 } 
                 else if(zones[indexArrayZones] === "finEcoute"){
-                  let maxDecibelsAtteint = maxDecibels;
+                  maxDecibelsAtteint = maxDecibels;
                 }
             } else {
                 // Si on a parcouru toutes les zones
@@ -77,44 +85,59 @@ function GamePlay(){
     };
 
     // Si on dépasse la longueur des ids, on arrête de rendre des questions pour cette zone
-    if (ids.length === 0) {
-        return <AffichageFinZone setIndexArrayZones={setIndexArrayZones} />;
+    if (zones[indexArrayZones] === "finEcoute") {
+        return <AffichageFinZone setIndexArrayZones={setIndexArrayZones} maxDB={maxDecibelsAtteint}/>;
     }
 
-    // Assurez-vous que la question actuelle est bien chargée avant d'afficher
     if (!currentQuestion) {
         return <p>Chargement de la question...</p>; // Une fois que currentQuestion est défini, on affiche la question
     }
 
     // Rendu conditionnel basé sur le type de question
     return (
-        <div>
-            <button onClick={handleClick}>Suivant</button>
-            <EcouteDB updateDecibel={setDecibel} updateMaxDecibel={setMaxDecibels} />
-            {
-              zones[indexArrayZones] === "soft" && (
-                isJauge = true,
-                <Affichage zone={zones[indexArrayZones]} currentQuestion={currentQuestion} decibels={decibel} isJauge={isJauge} />
-              )
-            }
-            {
-              zones[indexArrayZones] === "ecoute" && (
-                <Affichage zone={zones[indexArrayZones]} currentQuestion={currentQuestion} decibels={decibel}/>
-              )
-            }
-            {
-              zones[indexArrayZones] === "nonbruit" && (
-                isJauge = true,
-                <Affichage zone={zones[indexArrayZones]} currentQuestion={currentQuestion} decibels={decibel} isJauge={isJauge}/>
-              )
-            }
-            {
-              zones[indexArrayZones] === "mort" && (
-                <Affichage zone={zones[indexArrayZones]} currentQuestion={currentQuestion} decibels={decibel} />
-              )
-            }
-            
-        </div>
+      <div>
+        <button onClick={handleClick}>Suivant</button>
+        <EcouteDB updateDecibel={setDecibel} updateMaxDecibel={setMaxDecibels} setAudioAuthorized={setAudioAuthorized} />
+        {audioAuthorized && (
+          <>
+            {zones[indexArrayZones] === "soft" && (
+              <Affichage
+                zone={zones[indexArrayZones]}
+                currentQuestion={currentQuestion}
+                decibels={decibel}
+                isJauge={true}
+                player={player}
+              />
+            )}
+            {zones[indexArrayZones] === "ecoute" && (
+              <Affichage
+                zone={zones[indexArrayZones]}
+                currentQuestion={currentQuestion}
+                decibels={decibel}
+                maxDB={maxDecibels}
+                player={player}
+              />
+            )}
+            {zones[indexArrayZones] === "nonbruit" && (
+              <Affichage
+                zone={zones[indexArrayZones]}
+                currentQuestion={currentQuestion}
+                decibels={decibel}
+                isJauge={true}
+                player={player}
+              />
+            )}
+            {zones[indexArrayZones] === "mort" && (
+              <Affichage
+                zone={zones[indexArrayZones]}
+                currentQuestion={currentQuestion}
+                decibels={decibel}
+                player={player}
+              />
+            )}
+          </>
+        )}
+      </div>
     );
 }
 

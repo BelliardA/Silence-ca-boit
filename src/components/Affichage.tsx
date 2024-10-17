@@ -1,11 +1,15 @@
 import Jauge from "./Jauge";
 
-function Affichage({ zone, currentQuestion, decibels, isJauge }: { zone: string; currentQuestion: any; decibels: number; isJauge?: boolean}) {
+function Affichage({ zone, currentQuestion, decibels, isJauge, maxDB, player }: { zone: string; currentQuestion: any; decibels: number; isJauge?: boolean; maxDB?: number, player: string }) {
+
+    const defi = currentQuestion.defi.replace("{player1}", player);
 
 
     if (!currentQuestion) {
         return <p>Chargement de la question...</p>;
     }
+
+
 
     return (
         <div>
@@ -13,24 +17,22 @@ function Affichage({ zone, currentQuestion, decibels, isJauge }: { zone: string;
             {currentQuestion.type === 1 && (
                 <div>
                     <h2>Action</h2>
-                    <p>{currentQuestion.defi}</p>
-                    <p>ID: {currentQuestion.id}</p>
+                    <p>{defi}</p>
                 </div>
             )}
             {currentQuestion.type === 2 && (
                 <div>
                     <h2>Classique</h2>
-                    <p>{currentQuestion.defi}</p>
-                    <p>ID: {currentQuestion.id}</p>
+                    <p>{defi}</p>
                 </div>
             )}
             {currentQuestion.type === 3 && (
                 <div>
-                    <h2>Classique</h2>
-                    <p>{currentQuestion.defi}</p>
-                    <p>ID: {currentQuestion.id}</p>
+                    <h2>QCM</h2>
+                    <p>{defi}</p>
                 </div>
             )}
+            {maxDB && <p>Max DB: {maxDB}</p>}
             {isJauge && <Jauge decibels={decibels} />}
         </div>
     );

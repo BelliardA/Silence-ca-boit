@@ -189,7 +189,7 @@
     },
     {
       "id": 23,
-      "defi": "{player1} est le/la seul(e) à pouvoir parler pendant le tour, sauf si une question demande à un autre joueur de parler. {player1} tu es l’arbitre, si un joueur ne respecte pas la règle, il prend une pénalité.",
+      "defi": "{player1} est le/la seul(e) à pouvoir parler pendant le tour, sauf si une question demande à un autre joueur de parler. Tu es l’arbitre, si un joueur ne respecte pas la règle, il prend une pénalité.",
       "penalite": 0,
       "type" : 2,
       "zones": ["nonbruit", "mort"],

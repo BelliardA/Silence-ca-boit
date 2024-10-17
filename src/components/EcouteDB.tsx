@@ -1,65 +1,92 @@
-import { useEffect} from 'react';
+import { useCallback, useEffect, useRef} from 'react';
 
-function EcouteDB({ updateDecibel, updateMaxDecibel }: { updateDecibel: (decibels: number) => void; updateMaxDecibel: (maxDecibel: number) => void; }) {
+function EcouteDB({ updateDecibel, updateMaxDecibel, setAudioAuthorized }: { updateDecibel: (decibels: number) => void; updateMaxDecibel: (maxDecibel: number) => void; setAudioAuthorized: (audioAuthorized: boolean) => void }) {
   
   let maxDecibel = 0;
+  const interval = useRef<number>();
+  const analyserRef = useRef<AnalyserNode | null>(null);
 
-  function ecoute(){
+  const calculateDecibels = useCallback( () => {
+    const analyser = analyserRef.current;
 
-    navigator.mediaDevices.getUserMedia({ audio: true })
-    .then((stream) => {
-      const audioContext = new (window.AudioContext || window.AudioContext)();
-      const source = audioContext.createMediaStreamSource(stream);
+    if(!analyser) {
+      return;
+    }
 
-      const biquadFilter = audioContext.createBiquadFilter();
-      biquadFilter.type = 'bandpass';
-      biquadFilter.frequency.value = 1000;
-      biquadFilter.Q.value = 1.0;
+    const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
-      source.connect(biquadFilter);
+    analyser.getByteFrequencyData(dataArray);
+    let total = 0;
 
-      const analyser = audioContext.createAnalyser();
-      analyser.fftSize = 2048;
+    for (let i = 0; i < dataArray.length; i++) {
+      total += dataArray[i];
+    }
 
-      biquadFilter.connect(analyser);
-      const dataArray = new Uint8Array(analyser.frequencyBinCount);
+    const averageAmplitude = total / dataArray.length;
+    const reference = 1;
+    const decibels = averageAmplitude > 0 ? 20 * Math.log10(averageAmplitude / reference) : -Infinity;
 
-      function calculateDecibels() {
-        analyser.getByteFrequencyData(dataArray);
-        let total = 0;
+    console.log("Decibels: ");
 
-        for (let i = 0; i < dataArray.length; i++) {
-          total += dataArray[i];
-        }
+    // Utiliser setValue (qui est setDecibel dans le parent) pour mettre à jour l'état dans App.js
+    updateDecibel(decibels);
 
-        const averageAmplitude = total / dataArray.length;
-        const reference = 1;
-        const decibels = averageAmplitude > 0 ? 20 * Math.log10(averageAmplitude / reference) : -Infinity;
+    // Mettre à jour le max des décibels dans le composant enfant
+    if (decibels > maxDecibel) {
+      
+      maxDecibel = decibels; // Mettre à jour maxDecibel
+      updateMaxDecibel(maxDecibel); // Appeler la fonction pour mettre à jour le max
+    }
+  }, [updateDecibel, updateMaxDecibel]);
 
+  const defineAnalyser = useCallback(async () => {
 
+    try{
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+    
 
-        // Utiliser setValue (qui est setDecibel dans le parent) pour mettre à jour l'état dans App.js
-        updateDecibel(decibels);
+    const audioContext = new (window.AudioContext || window.AudioContext)();
+    const source = audioContext.createMediaStreamSource(stream);
 
-        // Mettre à jour le max des décibels dans le composant enfant
-        if (decibels > maxDecibel) {
-          maxDecibel = decibels; // Mettre à jour maxDecibel
-          updateMaxDecibel(maxDecibel); // Appeler la fonction pour mettre à jour le max
-        }
+    const biquadFilter = audioContext.createBiquadFilter();
+    biquadFilter.type = 'bandpass';
+    biquadFilter.frequency.value = 1000;
+    biquadFilter.Q.value = 1.0;
 
-        requestAnimationFrame(calculateDecibels);
-      }
+    source.connect(biquadFilter);
 
-      calculateDecibels();
-    })
-    .catch((err) => {
+    const analyser = audioContext.createAnalyser();
+    analyser.fftSize = 2048;
+
+    biquadFilter.connect(analyser);
+
+    analyserRef.current = analyser;
+
+    setAudioAuthorized(true);
+
+    }
+    catch(err){
       console.error("Error accessing the microphone: ", err);
-    });
-  }
+      setAudioAuthorized(false);
+    }
+   
+  },[]);
 
   useEffect(() => {
-    ecoute();
-  }, [updateDecibel]); // Ajout de setValue comme dépendance
+    defineAnalyser().then(() => {
+      console.log("Analyser defined");
+      clearInterval(interval.current);
+      interval.current = window.setInterval(calculateDecibels, 20);
+    });
+    return () => {
+      console.log("Clearing interval", interval.current);
+        clearInterval(interval.current);
+      
+    }
+  }, []); // Ajout de setValue comme dépendance
+
+  return null;
 }
+
 
 export default EcouteDB;
