@@ -19,6 +19,7 @@ function GamePlay() {
   const [player, setPlayer] = useState<string>(
     players[Math.floor(Math.random() * players.length)]
   );
+  const [player2, setPlayer2] = useState<string>("");
   const [audioAuthorized, setAudioAuthorized] = useState<boolean>(false);
   const [maxDecibelsAtteint, setMaxDecibelsAtteint] = useState<number>(0);
 
@@ -32,6 +33,23 @@ function GamePlay() {
     "mort",
     "afterGame",
   ];
+
+  const updatePlayer2 = () => {
+    if (players.length > 1) {
+      let randomPlayer2;
+      do {
+        randomPlayer2 = players[Math.floor(Math.random() * players.length)];
+      } while (randomPlayer2 === player); // Vérifie que player2 n'est pas égal à player
+      setPlayer2(randomPlayer2);
+    } else {
+      setPlayer2(""); // Si il n'y a pas assez de joueurs, player2 est vide
+    }
+  };
+  
+  // Appelez cette fonction dans le code où player2 doit être mis à jour.
+  useEffect(() => {
+    updatePlayer2();  // Mettez à jour player2 à chaque fois que player change
+  }, [player]); // Mettez à jour player2 à chaque fois que player change
 
   useEffect(() => {
     //timer de 3 seconds entre chaques dépassement du palafond
@@ -57,13 +75,30 @@ function GamePlay() {
     setMaxDecibels(0);
   }, [indexArrayZones]);
 
+  const replacePlaceholder = (question: string, sousTheme: string[] | undefined): string => {
+    // Vérifier si sousTheme est défini et est un tableau
+    if (Array.isArray(sousTheme) && sousTheme.length > 0) {
+      const randomSousTheme = sousTheme[Math.floor(Math.random() * sousTheme.length)];
+      return question.replace("{soustheme}", randomSousTheme);
+    } else {
+      // Si sousTheme est indéfini ou vide, on retourne la question originale sans remplacement
+      return question;
+    }
+  };
+  
   useEffect(() => {
-    //Chargement de la question actuelle
-    const ids = JSON.parse(
-      localStorage.getItem(zones[indexArrayZones] + "questions") || "[]"
-    );
+    // Chargement de la question actuelle
+    const ids = JSON.parse(localStorage.getItem(zones[indexArrayZones] + "questions") || "[]");
     if (ids.length > 0) {
-      setCurrentQuestion(questions[ids[currentIndex]]);
+      let question = questions[ids[currentIndex]];
+  
+      // Remplacer le placeholder {soustheme} seulement si 'soustheme' existe
+      const soustheme = question?.soustheme
+      if (soustheme) {
+        question.defi = replacePlaceholder(question.defi, question.soustheme);
+      }
+  
+      setCurrentQuestion(question);
     }
   }, [currentIndex, indexArrayZones, zones]);
 
@@ -129,6 +164,7 @@ function GamePlay() {
             isJauge={true}
             maxDB={maxDecibels}
             player={player}
+            player2={player2}
           />
         </div>
       );
@@ -148,6 +184,7 @@ function GamePlay() {
             decibels={decibel}
             maxDB={maxDecibels}
             player={player}
+            player2={player2}
           />
         </div>
       );
@@ -188,6 +225,7 @@ function GamePlay() {
             decibels={decibel}
             isJauge={true}
             player={player}
+            player2={player2}
           />
         </div>
       );
@@ -208,6 +246,7 @@ function GamePlay() {
             currentQuestion={currentQuestion}
             decibels={decibel}
             player={player}
+            player2={player2}
           />
         </div>
       );

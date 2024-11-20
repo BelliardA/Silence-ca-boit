@@ -5,7 +5,8 @@
       "penalite": 2,
       "type" : 1,
       "zones": ["nonbruit"],
-      "isTimer": false
+      "isTimer": false,
+      "twoPlayer": true
     },
     {
       "id": 1,
@@ -21,7 +22,8 @@
       "penalite": 1,
       "type" : 1,
       "zones": ["mort"],
-      "isTimer": false
+      "isTimer": false,
+      "twoPlayer": true
     },
     {
       "id": 3,
@@ -37,7 +39,8 @@
       "penalite": 0,
       "type" : 1,
       "zones": ["nonbruit", "mort"],
-      "isTimer": false
+      "isTimer": false,
+      "twoPlayer": true
     },
     {
       "id": 6,
@@ -46,7 +49,8 @@
       "type" : 1,
       "zones": ["ecoute", "nonbruit"],
       "isTimer": true,
-      "timer": 20
+      "timer": 20,
+      "twoPlayer": true
     },
     {
       "id": 6,
@@ -63,7 +67,8 @@
       "penalite": 1,
       "type" : 1,
       "zones": ["All"],
-      "isTimer": false
+      "isTimer": false,
+      "twoPlayer": true
     },
     {
       "id": 8,
@@ -71,7 +76,8 @@
       "penalite": 2,
       "type" : 1,
       "zones": ["nonbruit", "mort"],
-      "isTimer": false
+      "isTimer": false,
+      "twoPlayer": true
     },
     {
       "id": 9,
@@ -120,7 +126,7 @@
       "type" : 2,
       "zones": ["soft", "ecoute"],
       "isTimer": false,
-      "sous-theme": "sont en études, sont mineurs, ont moins de 50 EUR sur leur compte, ont un iPhone, ont plus de 4 heures d’écran par jour, portent un vêtement noir, sont assis à droite d’une fille, fument actuellement"
+      "soustheme": ["sont en études", "sont mineurs", "ont moins de 50 EUR sur leur compte", "ont un iPhone", "ont plus de 4 heures d’écran par jour", "portent un vêtement noir", "sont assis à droite d’une fille", "fument actuellement"]
     },
     {
       "id": 15,
@@ -210,7 +216,7 @@
       "type" : 1,
       "zones": ["ecoute", "nonbruit"],
       "isTimer": false,
-      "sous-theme": ["d’un camion, d’une oie"," d’une porte qui grince", "de ton voisin de droite", "de l’électricité"]
+      "soustheme": ["d’un camion", "d’une oie"," d’une porte qui grince", "de ton voisin de droite", "de l’électricité"]
     },
     {
       "id": 26,
@@ -220,7 +226,7 @@
       "zones": ["mort"],
       "isTimer": true,
       "timer": 7,
-      "sous-theme": ["3 villes commençant par P", "3 films où il y a des chats dedans"]
+      "soustheme": ["3 villes commençant par P", "3 films où il y a des chats dedans"]
     },
     {
       "id": 27,
@@ -229,7 +235,7 @@
       "type" : 2,
       "zones": ["All"],
       "isTimer": false,
-      "sous-theme": ["mettre les mêmes sous-vêtements 3 jours"," être le plus radin"," donner tout son argent à des associations"]
+      "soustheme": ["mettre les mêmes sous-vêtements 3 jours"," être le plus radin"," donner tout son argent à des associations"]
     },
     {
       "id": 28,
@@ -238,7 +244,7 @@
       "type" : 2,
       "zones": ["nonbruit", "soft"],
       "isTimer": false,
-      "sous-theme": ["voyager en dehors de l’Europe"," fait du foot en club"," mis du rouge à lèvres"]
+      "soustheme": ["voyager en dehors de l’Europe"," fait du foot en club"," mis du rouge à lèvres"]
     },
     {
       "id": 29,

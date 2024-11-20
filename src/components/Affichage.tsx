@@ -1,15 +1,25 @@
 import Jauge from "./Jauge";
 
-function Affichage({ zone, currentQuestion, decibels, isJauge, maxDB, player }: { zone: string; currentQuestion: any; decibels: number; isJauge?: boolean; maxDB?: number, player: string }) {
+function Affichage({ zone, currentQuestion, decibels, isJauge, maxDB, player, player2 }: { zone: string; currentQuestion: any; decibels: number; isJauge?: boolean; maxDB?: number, player: string; player2: string }) {
 
-    const defi = currentQuestion.defi.replace("{player1}", player);
-
+    function replacePlaceholders(template: string, replacements: Record<string, string>): string {
+        return Object.keys(replacements).reduce((result, placeholder) => {
+            const regex = new RegExp(`\\{${placeholder}\\}`, "g"); // Remplace toutes les occurrences de {placeholder}
+            return result.replace(regex, replacements[placeholder]);
+        }, template);
+    }
 
     if (!currentQuestion) {
         return <p>Chargement de la question...</p>;
     }
 
+    const replacements = {
+        player1: player,
+        player2: player2,
+    };
 
+    // Remplace les placeholders dans la chaîne de défi
+    const defi = replacePlaceholders(currentQuestion.defi, replacements);
 
     return (
         <div>
