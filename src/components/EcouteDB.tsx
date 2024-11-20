@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef} from 'react';
 
-function EcouteDB({ updateDecibel, updateMaxDecibel, setAudioAuthorized }: { updateDecibel: (decibels: number) => void; updateMaxDecibel: (maxDecibel: number) => void; setAudioAuthorized: (audioAuthorized: boolean) => void }) {
+function EcouteDB({ updateDecibel, updateMaxDecibel, setAudioAuthorized }: { updateDecibel: (decibels: number) => void; updateMaxDecibel: (maxDecibel: number) => void; setAudioAuthorized: (audioAuthorized: boolean) => void}) {
   
   let maxDecibel = 0;
   const interval = useRef<number>();
@@ -26,17 +26,16 @@ function EcouteDB({ updateDecibel, updateMaxDecibel, setAudioAuthorized }: { upd
     const reference = 1;
     const decibels = averageAmplitude > 0 ? 20 * Math.log10(averageAmplitude / reference) : -Infinity;
 
-    console.log("Decibels: ");
-
     // Utiliser setValue (qui est setDecibel dans le parent) pour mettre à jour l'état dans App.js
     updateDecibel(decibels);
-
     // Mettre à jour le max des décibels dans le composant enfant
-    if (decibels > maxDecibel) {
+      if (decibels > maxDecibel) {
       
-      maxDecibel = decibels; // Mettre à jour maxDecibel
-      updateMaxDecibel(maxDecibel); // Appeler la fonction pour mettre à jour le max
+        maxDecibel = decibels; // Mettre à jour maxDecibel
+        updateMaxDecibel(maxDecibel); 
+    // Appeler la fonction pour mettre à jour le max
     }
+
   }, [updateDecibel, updateMaxDecibel]);
 
   const defineAnalyser = useCallback(async () => {
@@ -74,16 +73,13 @@ function EcouteDB({ updateDecibel, updateMaxDecibel, setAudioAuthorized }: { upd
 
   useEffect(() => {
     defineAnalyser().then(() => {
-      console.log("Analyser defined");
       clearInterval(interval.current);
       interval.current = window.setInterval(calculateDecibels, 20);
     });
     return () => {
-      console.log("Clearing interval", interval.current);
         clearInterval(interval.current);
-      
     }
-  }, []); // Ajout de setValue comme dépendance
+  }, []); 
 
   return null;
 }
