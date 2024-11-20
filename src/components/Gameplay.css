@@ -1,0 +1,37 @@
+.btnPurchasse{
+    padding: 2vh 20vw;
+    border: solid 2px var(--color-secondary);
+    background-color: transparent;
+    border-radius: 30px;
+}
+
+.contain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.containEnd{
+    background-color: var(--color-secondary);
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    height: auto; /* Hauteur ajustable selon le contenu */
+    margin: 20vh auto;
+    font-family: "IBM Plex Mono", monospace;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacement entre les sections */
+    align-items: center;
+    text-align: center;
+}
+
+.btnEnd{
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    border: solid 2px var(--color-primary);
+}

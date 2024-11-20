@@ -1,8 +1,8 @@
-.logo-level{
+.logo-level {
   width: 100px;
 }
 
-.titre-level{
+.titre-level {
   font-size: 2rem;
   text-align: center;
   font-weight: bold;
@@ -13,10 +13,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 80px;
+  gap: 40px;
 }
 
-.radio-group{
+.radio-group {
   padding: 20px 50px;
 }
 
@@ -24,19 +24,34 @@
   display: none;
 }
 
-.radio-group label{
+.radio-group label {
   padding: 20px 50px;
   background-color: var(--color-secondary);
   color: var(--color-primary);
-  border-radius: 10px;
+  border-radius: 5px; /* Coins arrondis pour un effet de touche */
   border: var(--color-secondary) 2px solid;
+  font-size: 1.2rem;
+  font-family: "IBM Plex Mono", monospace;
+  text-align: center;
+  box-shadow: 0 4px var(--color-primary); /* Ombre pour l'effet de surélévation */
+  transition: all 0.3s ease;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
 }
 
 .radio-group input[type="radio"]:checked + label {
   background-color: var(--color-primary);
   color: var(--color-secondary);
-  transform: scale(1.1); 
-  transition: transform 0.3s ease;
+  box-shadow: 0 2px var(--color-primary); /* Ombre réduite pour l'effet enfoncé */
+  transform: translateY(2px); /* Déplacement pour simuler l'enfoncement */
+}
+
+.radio-group label:hover {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  transform: scale(1.05); /* Effet au survol */
+  transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
 .submit-button {
@@ -48,6 +63,3 @@
   font-size: 1.5rem;
   font-family: "IBM Plex Mono", monospace;
 }
-
-
-

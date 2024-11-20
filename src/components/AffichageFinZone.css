@@ -1,0 +1,125 @@
+/* Container for the game results form */
+.finZoneContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color-secondary);
+    border: 2px solid var(--color-primary); /* Ajoute une bordure pour délimiter */
+    border-radius: 15px;
+    padding: 20px;
+    width: 80%; /* Largeur dynamique pour les écrans */
+    max-width: 600px;
+    margin: 20px auto; /* Centrage horizontal */
+    font-family: "IBM Plex Mono", monospace;
+    gap: 30px;
+}
+
+/* Max DB Display */
+.finZoneMaxDB {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.petitText{
+    color: var(--color-primary);
+}
+
+/* Player input container */
+.playerInputContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: #dfdecd; /* Couleur légèrement contrastée */
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Player name display */
+.playerName {
+    font-size: 1rem;
+    color: var(--color-primary);
+    flex: 1;
+    margin-right: 10px;
+}
+
+/* Player guess input */
+.playerGuessInput {
+    width: 70%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: var(--color-primary);
+    text-align: center;
+    padding: 5px 10px;
+    border-bottom: 2px solid var(--color-primary); /* L'accentuation du champ */
+    transition: border-color 0.3s;
+}
+
+.playerGuessInput:focus {
+    border-bottom: 2px solid var(--color-secondary);
+}
+
+/* Submit button */
+.submitButton {
+    margin-top: 20px;
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.submitButton:hover {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    transform: scale(1.05); /* Animation légère au survol */
+}
+
+/* Best player display */
+.bestPlayerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #dfdecd;
+    border: 2px solid var(--color-primary);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 35vh 20px ;
+    text-align: center;
+    font-family: "IBM Plex Mono", monospace;
+}
+.maxdbAtteind{
+    color: var(--color-primary);
+}
+.bestPlayerMessage {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+}
+
+.nextZoneButton {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.nextZoneButton:hover {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+}

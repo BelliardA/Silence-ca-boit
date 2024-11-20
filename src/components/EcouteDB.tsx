@@ -1,15 +1,19 @@
-import { useCallback, useEffect, useRef} from 'react';
+import { useCallback, useEffect, useRef } from "react";
 
-function EcouteDB({ updateDecibel, updateMaxDecibel, setAudioAuthorized }: { updateDecibel: (decibels: number) => void; updateMaxDecibel: (maxDecibel: number) => void; setAudioAuthorized: (audioAuthorized: boolean) => void}) {
-  
-  let maxDecibel = 0;
+function EcouteDB({
+  updateDecibel,
+  setAudioAuthorized,
+}: {
+  updateDecibel: (decibels: number) => void;
+  setAudioAuthorized: (audioAuthorized: boolean) => void;
+}) {
   const interval = useRef<number>();
   const analyserRef = useRef<AnalyserNode | null>(null);
 
-  const calculateDecibels = useCallback( () => {
+  const calculateDecibels = useCallback(() => {
     const analyser = analyserRef.current;
 
-    if(!analyser) {
+    if (!analyser) {
       return;
     }
 
@@ -24,52 +28,43 @@ function EcouteDB({ updateDecibel, updateMaxDecibel, setAudioAuthorized }: { upd
 
     const averageAmplitude = total / dataArray.length;
     const reference = 1;
-    const decibels = averageAmplitude > 0 ? 20 * Math.log10(averageAmplitude / reference) : -Infinity;
+    const decibels =
+      averageAmplitude > 0
+        ? 20 * Math.log10(averageAmplitude / reference)
+        : -Infinity;
 
     // Utiliser setValue (qui est setDecibel dans le parent) pour mettre à jour l'état dans App.js
     updateDecibel(decibels);
     // Mettre à jour le max des décibels dans le composant enfant
-      if (decibels > maxDecibel) {
-      
-        maxDecibel = decibels; // Mettre à jour maxDecibel
-        updateMaxDecibel(maxDecibel); 
-    // Appeler la fonction pour mettre à jour le max
-    }
-
-  }, [updateDecibel, updateMaxDecibel]);
+  }, [updateDecibel]);
 
   const defineAnalyser = useCallback(async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
-    try{
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-    
+      const audioContext = new (window.AudioContext || window.AudioContext)();
+      const source = audioContext.createMediaStreamSource(stream);
 
-    const audioContext = new (window.AudioContext || window.AudioContext)();
-    const source = audioContext.createMediaStreamSource(stream);
+      const biquadFilter = audioContext.createBiquadFilter();
+      biquadFilter.type = "bandpass";
+      biquadFilter.frequency.value = 1000;
+      biquadFilter.Q.value = 1.0;
 
-    const biquadFilter = audioContext.createBiquadFilter();
-    biquadFilter.type = 'bandpass';
-    biquadFilter.frequency.value = 1000;
-    biquadFilter.Q.value = 1.0;
+      source.connect(biquadFilter);
 
-    source.connect(biquadFilter);
+      const analyser = audioContext.createAnalyser();
+      analyser.fftSize = 2048;
 
-    const analyser = audioContext.createAnalyser();
-    analyser.fftSize = 2048;
+      biquadFilter.connect(analyser);
 
-    biquadFilter.connect(analyser);
+      analyserRef.current = analyser;
 
-    analyserRef.current = analyser;
-
-    setAudioAuthorized(true);
-
-    }
-    catch(err){
+      setAudioAuthorized(true);
+    } catch (err) {
       console.error("Error accessing the microphone: ", err);
       setAudioAuthorized(false);
     }
-   
-  },[]);
+  }, []);
 
   useEffect(() => {
     defineAnalyser().then(() => {
@@ -77,12 +72,11 @@ function EcouteDB({ updateDecibel, updateMaxDecibel, setAudioAuthorized }: { upd
       interval.current = window.setInterval(calculateDecibels, 20);
     });
     return () => {
-        clearInterval(interval.current);
-    }
-  }, []); 
+      clearInterval(interval.current);
+    };
+  }, []);
 
   return null;
 }
-
 
 export default EcouteDB;

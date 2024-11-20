@@ -1,7 +1,21 @@
 import Jauge from "./Jauge";
+import './Affichage.css'; // Importation du fichier CSS
 
-function Affichage({ zone, currentQuestion, decibels, isJauge, maxDB, player, player2 }: { zone: string; currentQuestion: any; decibels: number; isJauge?: boolean; maxDB?: number, player: string; player2: string }) {
-
+function Affichage({
+    zone,
+    currentQuestion,
+    decibels,
+    isJauge,
+    player,
+    player2,
+}: {
+    zone: string;
+    currentQuestion: any;
+    decibels: number;
+    isJauge?: boolean;
+    player: string;
+    player2: string;
+}) {
     function replacePlaceholders(template: string, replacements: Record<string, string>): string {
         return Object.keys(replacements).reduce((result, placeholder) => {
             const regex = new RegExp(`\\{${placeholder}\\}`, "g"); // Remplace toutes les occurrences de {placeholder}
@@ -18,31 +32,35 @@ function Affichage({ zone, currentQuestion, decibels, isJauge, maxDB, player, pl
         player2: player2,
     };
 
-    // Remplace les placeholders dans la chaîne de défi
     const defi = replacePlaceholders(currentQuestion.defi, replacements);
 
     return (
-        <div>
-            <h2>Écoute - Zone: {zone}</h2>
+        <div className="card">
+            <h2 className="zoneTitle">Zone: {zone}</h2>
+            {(zone === "nonbruit" || zone === "mort") && (
+                <h3 className="zoneNotice">Plafond à ne pas dépasser : 30 db</h3>
+            )}
             {currentQuestion.type === 1 && (
-                <div>
-                    <h2>Action</h2>
+                <div className="questionType">
+                    <h3>Action</h3>
                     <p>{defi}</p>
+                    <p>penalité {currentQuestion.penalite}</p>
                 </div>
             )}
             {currentQuestion.type === 2 && (
-                <div>
-                    <h2>Classique</h2>
+                <div className="questionType">
+                    <h3>Classique</h3>
                     <p>{defi}</p>
+                    <p>penalité {currentQuestion.penalite}</p>
                 </div>
             )}
             {currentQuestion.type === 3 && (
-                <div>
-                    <h2>QCM</h2>
+                <div className="questionType">
+                    <h3>QCM</h3>
                     <p>{defi}</p>
+                    <p>penalité {currentQuestion.penalite}</p>
                 </div>
             )}
-            {maxDB && <p>Max DB: {maxDB}</p>}
             {isJauge && <Jauge decibels={decibels} />}
         </div>
     );

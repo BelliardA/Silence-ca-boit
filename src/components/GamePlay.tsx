@@ -4,6 +4,8 @@ import AffichageFinZone from "./AffichageFinZone";
 import questions from "../Json/questions.json";
 import { useState, useEffect } from "react";
 import "./Jauge.css";
+import "./GamePlay.css";
+import { MoveRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 function GamePlay() {
@@ -68,9 +70,6 @@ function GamePlay() {
   }, [decibel, isCooldown]);
 
   useEffect(() => {
-    if (zones[indexArrayZones] === "ecoute") {
-      setMaxDecibels(0);
-    }
     setCurrentIndex(0);
     setMaxDecibels(0);
   }, [indexArrayZones]);
@@ -148,13 +147,12 @@ function GamePlay() {
   }
 
   switch (zones[indexArrayZones]) {
+    // ---------------------------------zone soft----------------------------
     case "soft":
       return (
-        <div>
-          <button onClick={handleClick}>Suivant</button>
+        <div className="contain">
           <EcouteDB
             updateDecibel={setDecibel}
-            updateMaxDecibel={setMaxDecibels}
             setAudioAuthorized={setAudioAuthorized}
           />
           <Affichage
@@ -162,33 +160,36 @@ function GamePlay() {
             currentQuestion={currentQuestion}
             decibels={decibel}
             isJauge={true}
-            maxDB={maxDecibels}
             player={player}
             player2={player2}
           />
+          <button style={{ color: "#FFFEEB" }}  className="btnPurchasse" onClick={handleClick}><MoveRight size={50} /></button>
         </div>
       );
       break;
+      // ---------------------------------zone ecoute----------------------------
     case "ecoute":
+      if(decibel > maxDecibels) {
+        setMaxDecibels(decibel);
+      }
       return (
-        <div>
-          <button onClick={handleClick}>Suivant</button>
+        <div className="contain">
           <EcouteDB
             updateDecibel={setDecibel}
-            updateMaxDecibel={setMaxDecibels}
             setAudioAuthorized={setAudioAuthorized}
           />
           <Affichage
             zone={zones[indexArrayZones]}
             currentQuestion={currentQuestion}
             decibels={decibel}
-            maxDB={maxDecibels}
             player={player}
             player2={player2}
           />
+          <button style={{ color: "#FFFEEB" }}  className="btnPurchasse" onClick={handleClick}><MoveRight size={50} /></button>
         </div>
       );
       break;
+      // ---------------------------------zone finEcoute ----------------------------
     case "finEcoute":
       return (
         <AffichageFinZone
@@ -197,26 +198,24 @@ function GamePlay() {
         />
       );
       break;
+      // ---------------------------------zone nonBruit----------------------------
     case "nonbruit":
       if (decibel > 30) {
         return (
-          <div>
+          <div className="containEnd">
             <h1>Plafond dépasser !!</h1>
             <p>
               Décidez ensemble qui à fait tout ce rafus, cette personne prendra
               1 pénalité
             </p>
-            <button onClick={() => setDecibel(0)}>Revenir aux questions</button>
+            <button style={{ color: "#14192F" }} className="btnPurchasse btnEnd" onClick={() => setDecibel(0)}><MoveRight size={50} /></button>
           </div>
         );
       }
       return (
-        <div>
-          <button onClick={handleClick}>Suivant</button>
-          <h2>le plafond de décibel est de 30</h2>
+        <div className="contain">
           <EcouteDB
             updateDecibel={setDecibel}
-            updateMaxDecibel={setMaxDecibels}
             setAudioAuthorized={setAudioAuthorized}
           />
           <Affichage
@@ -227,18 +226,16 @@ function GamePlay() {
             player={player}
             player2={player2}
           />
+          <button style={{ color: "#FFFEEB" }} className="btnPurchasse" onClick={handleClick}><MoveRight size={50} /></button>
         </div>
       );
       break;
+      // ---------------------------------zone mort----------------------------
     case "mort":
       return (
-        <div>
-          <button onClick={handleClick}>Suivant</button>
-          <h2>le plafond de décibel est de 30</h2>
-          <p>{countPlafond}</p>
+        <div className="contain">
           <EcouteDB
             updateDecibel={setDecibel}
-            updateMaxDecibel={setMaxDecibels}
             setAudioAuthorized={setAudioAuthorized}
           />
           <Affichage
@@ -248,16 +245,18 @@ function GamePlay() {
             player={player}
             player2={player2}
           />
+          <button style={{ color: "#FFFEEB" }} className="btnPurchasse"  onClick={handleClick}><MoveRight size={50} /></button>
         </div>
       );
       break;
+      // ---------------------------------zone afterGame----------------------------
     case "afterGame":
       return (
-        <div>
+        <div className="containEnd">
           <h1>Fin de la partie</h1>
-          <h2>Vous avez dépassez {countPlafond} le plafond</h2>
+          <h2>Vous avez dépassez {countPlafond} fois le plafond</h2>
           <p>Tous les joueurs prennent {countPlafond} pénalités</p>
-          <button onClick={() => rePlay()}>Rejouer</button>
+          <button className="btnPurchasse btnEnd" onClick={() => rePlay()}>Rejouer</button>
         </div>
       );
       break;

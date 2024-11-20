@@ -1,0 +1,73 @@
+/* Card Styling */
+.card {
+    background-color: var(--color-secondary);
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    height: auto; /* Hauteur ajustable selon le contenu */
+    margin: 20px auto;
+    font-family: "IBM Plex Mono", monospace;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacement entre les sections */
+    align-items: center;
+    text-align: center;
+}
+
+/* Title Styling */
+.zoneTitle {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Zone Notice Styling */
+.zoneNotice {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Question Container */
+.questionContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Question Type Styling */
+.questionType {
+    border: solid 2px rgb(0, 0, 0);
+    padding: 15px;
+    background-color: #dfdecd;
+    border-radius: 10px;
+    width: 100%; /* Prend toute la largeur disponible */
+    max-width: 500px;
+    text-align: left; /* Texte aligné à gauche */
+}
+
+/* Specific Type Heading */
+.questionType h3 {
+    font-size: 1.6rem;
+    color: #000;
+}
+
+/* Jauge Styling */
+.jaugeWrapper {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jaugeWrapper.hidden {
+    display: none;
+}
