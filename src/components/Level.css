@@ -1,5 +1,13 @@
+.level-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
 .logo-level {
-  width: 100px;
+  width: 200px;
+  margin-top: 40px;
 }
 
 .titre-level {
@@ -13,7 +21,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 20px;
 }
 
 .radio-group {

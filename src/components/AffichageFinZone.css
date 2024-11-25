@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--color-secondary);
     border: 2px solid var(--color-primary); /* Ajoute une bordure pour délimiter */
     border-radius: 15px;
     padding: 20px;
@@ -18,13 +17,13 @@
 .finZoneMaxDB {
     font-size: 1.4rem;
     font-weight: bold;
-    color: var(--color-primary);
+    color: var(--color-secondary);
     margin-bottom: 20px;
     text-align: center;
 }
 
 .petitText{
-    color: var(--color-primary);
+    color: var(--color-secondary);
 }
 
 /* Player input container */
@@ -70,19 +69,13 @@
 .submitButton {
     margin-top: 20px;
     background-color: transparent;
-    color: var(--color-primary);
-    border: 2px solid var(--color-primary);
+    color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
     border-radius: 15px;
-    padding: 10px 20px;
+    padding: 20px 50px;
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s;
-}
-
-.submitButton:hover {
-    background-color: var(--color-primary);
-    color: var(--color-secondary);
-    transform: scale(1.05); /* Animation légère au survol */
 }
 
 /* Best player display */
@@ -90,36 +83,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #dfdecd;
-    border: 2px solid var(--color-primary);
+    background-color: var(--color-background);
+    border: 2px solid var(--color-secondary);
     border-radius: 15px;
     padding: 20px;
     margin: 35vh 20px ;
+    gap: 20px;
     text-align: center;
     font-family: "IBM Plex Mono", monospace;
 }
 .maxdbAtteind{
-    color: var(--color-primary);
+    color: var(--color-secondary);
 }
 .bestPlayerMessage {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--color-primary);
+    color: var(--color-secondary);
     margin-bottom: 20px;
 }
 
 .nextZoneButton {
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
-    border: none;
+    color: var(--color-secondary);
+    background-color: transparent;
+    border: 2px solid var(--color-secondary);
     border-radius: 15px;
     padding: 10px 20px;
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s;
-}
-
-.nextZoneButton:hover {
-    background-color: var(--color-primary);
-    color: var(--color-secondary);
 }

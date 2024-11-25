@@ -22,10 +22,12 @@ function GamePlay() {
     players[Math.floor(Math.random() * players.length)]
   );
   const [player2, setPlayer2] = useState<string>("");
-  const [audioAuthorized, setAudioAuthorized] = useState<boolean>(false);
+  const [audioAuthorized, setAudioAuthorized] = useState<boolean>(false)
   const [maxDecibelsAtteint, setMaxDecibelsAtteint] = useState<number>(0);
 
   const navigate = useNavigate();
+
+  
 
   const zones = [
     "soft",
@@ -150,6 +152,7 @@ function GamePlay() {
     // ---------------------------------zone soft----------------------------
     case "soft":
       return (
+       
         <div className="contain">
           <EcouteDB
             updateDecibel={setDecibel}
@@ -165,6 +168,7 @@ function GamePlay() {
           />
           <button style={{ color: "#FFFEEB" }}  className="btnPurchasse" onClick={handleClick}><MoveRight size={50} /></button>
         </div>
+       
       );
       break;
       // ---------------------------------zone ecoute----------------------------
@@ -252,10 +256,12 @@ function GamePlay() {
       // ---------------------------------zone afterGame----------------------------
     case "afterGame":
       return (
+        <div className="main-end">
         <div className="containEnd">
           <h1>Fin de la partie</h1>
           <h2>Vous avez dépassez {countPlafond} fois le plafond</h2>
           <p>Tous les joueurs prennent {countPlafond} pénalités</p>
+        </div>
           <button className="btnPurchasse btnEnd" onClick={() => rePlay()}>Rejouer</button>
         </div>
       );

@@ -36,7 +36,7 @@ function AffichageFinZone({ setIndexArrayZones, maxDB }: { setIndexArrayZones: a
     if (isResponseSubmitted) {
         return (
             <div className="bestPlayerContainer">
-                <p className="bestPlayerMessage">{bestPlayer} tu distribues 3 pénalités !</p>
+                <p className="bestPlayerMessage"><strong>{bestPlayer}</strong> tu distribues 3 pénalités !</p>
                 <p className="maxdbAtteind">Le nombre de décibel maximum atteind est : <strong>{maxDB}</strong></p>
                 <button
                     className="nextZoneButton"

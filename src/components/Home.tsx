@@ -13,6 +13,7 @@ function Home() {
 
   const [players, setPlayers] = useState<string[]>([]);
   const [addPlayer, setAddPlayer] = useState(false);
+  const [isTutorial, setIsTutorial] = useState(false);
 
   useEffect(() => {
     const players = JSON.parse(localStorage.getItem("players") || "[]");
@@ -29,7 +30,20 @@ function Home() {
   };
 
   const play = () => {
-    navigate("/level");
+    if (players.length < 2) {
+      alert("Il faut au moins deux joueurs pour jouer");
+      return;
+    }
+
+    const tutorialShown = localStorage.getItem("tutorialShown");
+
+    if (!tutorialShown) {
+      // Marquer le tutoriel comme vu
+      localStorage.setItem("tutorialShown", "true");
+      navigate("/tuto");  // Rediriger vers le tutoriel
+    } else {
+      navigate("/level"); // Rediriger vers la page de niveau si le tuto a déjà été vu
+    }
   }
 
   return (
@@ -43,7 +57,7 @@ function Home() {
           <div className="content-players">
             {players.map((player, index) => (
               <div key={index} className="players">
-                {player}
+                <p>{player}</p>
                 <button onClick={() => deletePlayer(index)} className="btn-del">
                   <img className="btn-img-del" src={delImg} alt="" />
                 </button>

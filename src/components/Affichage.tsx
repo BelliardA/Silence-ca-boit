@@ -42,23 +42,20 @@ function Affichage({
             )}
             {currentQuestion.type === 1 && (
                 <div className="questionType">
-                    <h3>Action</h3>
                     <p>{defi}</p>
-                    <p>penalité {currentQuestion.penalite}</p>
+                    <p>penalité(s) : {currentQuestion.penalite}</p>
                 </div>
             )}
             {currentQuestion.type === 2 && (
                 <div className="questionType">
-                    <h3>Classique</h3>
                     <p>{defi}</p>
-                    <p>penalité {currentQuestion.penalite}</p>
+                    <p>penalité(s) : {currentQuestion.penalite}</p>
                 </div>
             )}
             {currentQuestion.type === 3 && (
                 <div className="questionType">
-                    <h3>QCM</h3>
                     <p>{defi}</p>
-                    <p>penalité {currentQuestion.penalite}</p>
+                    <p>penalité(s) : {currentQuestion.penalite}</p>
                 </div>
             )}
             {isJauge && <Jauge decibels={decibels} />}

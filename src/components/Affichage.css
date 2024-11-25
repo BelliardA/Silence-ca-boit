@@ -1,7 +1,8 @@
 /* Card Styling */
 .card {
-    background-color: var(--color-secondary);
-    color: rgb(0, 0, 0);
+    background-color: var(--color-background);
+    color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -44,9 +45,7 @@
 
 /* Question Type Styling */
 .questionType {
-    border: solid 2px rgb(0, 0, 0);
     padding: 15px;
-    background-color: #dfdecd;
     border-radius: 10px;
     width: 100%; /* Prend toute la largeur disponible */
     max-width: 500px;
@@ -56,7 +55,7 @@
 /* Specific Type Heading */
 .questionType h3 {
     font-size: 1.6rem;
-    color: #000;
+    color: #ffffff;
 }
 
 /* Jauge Styling */

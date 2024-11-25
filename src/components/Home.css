@@ -8,7 +8,7 @@
   width: 200px;
   margin: 0 auto;
   display: block;
-  margin-top: 20px;
+  margin-top: 40px;
   margin-bottom: 20px;
 }
 
@@ -20,26 +20,34 @@ main{
 }
 
 .content-players{
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 70%;
-  max-height: 300px;
+  max-height: 40vh;
   overflow-y:scroll;
   overflow-x: hidden;
-  padding: 20px;
+  align-items: center;
+  justify-content: center;
 }
 
 .players{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 10px 0px;
   background-color: var(--color-secondary);
   color: var(--color-primary);
   text-decoration: none;
   border-radius: 30px;
 }
+
+.players p {
+  margin-left: 1.5rem;
+}
+
 
 .btn-del{
   background-color: transparent ;
@@ -62,13 +70,15 @@ footer{
   justify-content: center;
   align-items: center;
   padding-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .jouer{
   font-family: "IBM Plex Mono", monospace;
-  background-color: var(--color-secondary);
-  color: var(--color-primary);
-  padding: 25px 100px;
+  background-color: transparent;
+  color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+  padding: 20px 90px;
   border-radius: 40px;
   font-size: 2rem;
 }
