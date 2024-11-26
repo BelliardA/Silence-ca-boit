@@ -27,7 +27,9 @@ function GamePlay() {
 
   const navigate = useNavigate();
 
-  
+  if(audioAuthorized){
+    console.log("Audio autorisé")
+  }
 
   const zones = [
     "soft",
@@ -212,7 +214,7 @@ function GamePlay() {
               Décidez ensemble qui à fait tout ce rafus, cette personne prendra
               1 pénalité
             </p>
-            <button style={{ color: "#14192F" }} className="btnPurchasse btnEnd" onClick={() => setDecibel(0)}><MoveRight size={50} /></button>
+            <button style={{ color: "var(--color-secondary)" }} className="btnPurchasse btnEnd" onClick={() => setDecibel(0)}><MoveRight size={50} /></button>
           </div>
         );
       }

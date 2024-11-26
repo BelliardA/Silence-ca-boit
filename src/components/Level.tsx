@@ -6,6 +6,8 @@ import questions from "./../Json/questions.json";
 
 import "./Level.css";
 
+import { ArrowLeft } from "lucide-react";
+
 function Level() {
   const navigate = useNavigate();
   const nbQuestionGame = 40;
@@ -124,8 +126,15 @@ function Level() {
     return Array.from(uniqueValues);
   }
 
+  const handleMoveToMenu = () => {
+    navigate("/");
+  };
+
   return (
     <main className="level-container">
+      <button className="row" onClick={handleMoveToMenu}>
+        <ArrowLeft size={40} color="var(--color-secondary)"/>
+      </button>
       <img className="logo-level" src={logo} alt="Logo" />
       <h1 className="titre-level">Choisissez un niveau</h1>
       <form onSubmit={handleSubmit} className="level-form">

@@ -4,11 +4,20 @@
   grid-template-rows: auto 1fr auto; /* Auto pour le header, 1fr pour le main, auto pour le footer */
 }
 
+.btn-go-tuto{
+  background-color: transparent;
+  border: none;
+}
+
+.contain-btn-go-tuto{
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
 .logo-menu { 
   width: 200px;
   margin: 0 auto;
   display: block;
-  margin-top: 40px;
   margin-bottom: 20px;
 }
 
@@ -26,11 +35,11 @@ main{
   flex-direction: column;
   gap: 10px;
   width: 70%;
-  max-height: 40vh;
+  max-height: 38vh;
   overflow-y:scroll;
   overflow-x: hidden;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .players{

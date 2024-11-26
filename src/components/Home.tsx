@@ -8,12 +8,13 @@ import delImg from "./../assets/del.png";
 
 import Input from "./Input";
 
+import {BookText} from "lucide-react";
+
 function Home() {
   const navigate = useNavigate();
 
   const [players, setPlayers] = useState<string[]>([]);
   const [addPlayer, setAddPlayer] = useState(false);
-  const [isTutorial, setIsTutorial] = useState(false);
 
   useEffect(() => {
     const players = JSON.parse(localStorage.getItem("players") || "[]");
@@ -46,10 +47,19 @@ function Home() {
     }
   }
 
+  const handleClickTuto = () => {
+    navigate("/tuto");
+  }
+
   return (
     <>
       <section className="contenu">
         <header>
+          <div className="contain-btn-go-tuto">
+            <button className="btn-go-tuto" onClick={handleClickTuto}>
+              <BookText size={40} color="var(--color-secondary)"/>
+            </button>
+          </div>
           <img className="logo-menu" src={logo} alt="" />
         </header>
         <main>
